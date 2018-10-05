@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/framwork.css">
+    <style>
+        .wrapper{
+            width: 800px;
+            height: 100px;
+            margin: auto;
+        }
+        .wrap .item{
+            height: 30px;
+            background: pink;
+            border: 1px solid black;
+            /* 變成怪異盒模型 方便看效果 */
+        }
+        /* 小屏幕優先 */
+        /* .item{
+            width: 100%;
+            
+        } */
+        /* .hidden{
+            display: none;
+        } */
+        /* ipad */
+        /* @media screen and (min-width:768px){ 
+            .item{
+                width: 50%;
+            }
+            .hidden{
+                display: block;
+            }
+        } */
+        /* pc */
+        /* @media screen and (min-width:992px){
+            .item{
+                width: 25%;
+            }
+            .hidden{
+                display: block;
+            }
+        } */
+        .item:nth-child(1){
+            /* height: 300px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="col-xs-12  col-md-6 col-lg-3 item"></div>
+        <div class="col-xs-12  col-md-6 col-lg-3 item"></div>
+        <div class="col-xs-12  col-md-6 col-lg-3 item"></div>
+        <div class="col-xs-12  col-md-6 col-lg-3 item"></div>
+        <div class="item col-xs-3 col-xs-offset-6"></div>
+    </div>
+    <p class="hide-xs">pad pc</p>
+    <p class="show-xs">mobie</p>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>prograss</title>
+    <style>
+        body{
+            background: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+</body>
+<script>
+    // 用面向对象的思维来写 创建两个类 一个是进度条 一个是canvas 专门画图
+    class Canvas{
+        constructor(size,radian,color,value,time){
+            this.size = size;
+            this.radian = radian;
+            this.color = color;
+            this.value = value;
+            this.time = time;
+            this.init();
+        }
+        init(){
+            this.CreateCanvas();
+            this.drawCircle('#f7f7f7');
+            this.drawCircle(this.color,this.radian);
+            this.drawText(this.value);
+        }
+        //创建canvas标签
+        CreateCanvas(){
+            this.el = document.createElement('canvas');
+            this.el.width = this.size;
+            this.el.height = this.size;
+            this.ctx = this.el.getContext('2d');
+        }
+        drawCircle(color,radian = (Math.PI * 2)){
+            var _r =  this.size/2 - this.size/20;
+            var _x = this.size/2;
+            var _y = this.size/2;
+            this.draw(()=>{
+                this.ctx.arc(_x,_y,_r, - Math.PI / 2, radian -( Math.PI / 2 ));
+                this.ctx.lineWidth = this.size/10;
+                this.ctx.strokeStyle = color;
+                this.ctx.stroke();
+            })
+        }
+        Time(radian, value){
+            this.ctx.clearRect(0, 0, this.size, this.size);
+            this.drawCircle('#f7f7f7'); //重绘背景
+            this.drawCircle(this.color,radian);     
+            this.drawText(value);
+        }
+        drawText(value){
+            this.draw(()=>{
+                this.ctx.font = 'normal '+this.size/6+'px 微软雅黑';
+                this.ctx.textBaseline  = 'middle';
+                this.ctx.textAlign = 'center';
+                this.ctx.fillStyle = "white";
+                this.ctx.fillText (value , this.size/2 ,this.size/2);
+            })
+        }
+        draw(callback){ //安全绘制的方法
+            this.ctx.save();
+            this.ctx.beginPath();
+            callback?callback():"";
+            this.ctx.closePath();
+            this.ctx.restore();
+        }
+    }
+
+    class Progress{
+        constructor(selector,options){
+            this.el =(typeof selector === 'string')? document.querySelector(selector):selector;
+            var _default = {size:'200px',color:"#f7f7f7",min:0,value:30,max:60};
+            // 往Progress对象上挂载属性 有传值就覆盖之前设置的默认属性
+            Object.assign(this,_default,options);
+            this.init();
+        }
+        init(){
+            this.CreateCanvas();
+            this.el.appendChild(this._canvas.el);
+        }
+        // 计算出值后传给canvas
+        CreateCanvas(){
+            let {size,color,value,max} = this;
+            //计算出需要走的弧度
+            var radian = this.ComputeValue(value);
+            this._canvas = new Canvas(size,radian,color,value);
+            if(this.time){  //如果有传入时间 每次传入不同的弧度
+                var t = setInterval(()=>{
+                    radian = this.ComputeValue(++value);
+                   // new Canvas(size,radian,color,value,this.time);
+                   this._canvas.Time(radian, value);//每次改变角度和值
+                    if(value == max ) //clearInterval(t); 
+                    value = 0;
+                },1000);
+            }
+        }
+        ComputeValue(value){
+            return (value*2*Math.PI)/(this.max-this.min);
+        }
+    }
+
+    new Progress('.a',{
+        size:200,
+        color:'red',
+        min: 0, // 最小值
+        max: 60, // 最大值
+        value: 0, // 当前值
+        time:60000  //一分钟跑一整圈
+    })
+    new Progress('.b',{
+        size:300,
+        color:'red',
+        min: 0, // 最小值
+        max: 100, // 最大值
+        value: 60, // 当前值
+    })
+</script>
+</html>

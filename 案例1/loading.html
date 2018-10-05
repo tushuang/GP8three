@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: black;
+			}
+			.loading{
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -20px;
+			}
+			.content,.content1{
+				width: 40px;
+				height: 40px;
+				position: absolute;
+			}
+			.content1{
+				transform: rotate(45deg);
+			}
+			.content div,.content1 div{
+				width: 12px;
+				height: 12px;
+				background: #FFFFFF;
+				border-radius: 50%;
+				position: absolute;
+				animation:mymove 1.5s linear  infinite;
+			}
+			.arc1{
+				left: 0;
+				top: 0;
+			}
+				.arc2{
+				right: 0;
+				top: 0;
+			}
+				.arc3{
+				bottom: 0;
+				right: 0;
+			}
+				.arc4{
+				bottom: 0;
+				left: 0;
+			}
+			@keyframes mymove{
+				0%{ transform: scale(0);}
+				50%{transform: scale(1);}
+				100%{transform: scale(0);}
+			}
+			.content .arc1{
+				animation-delay: -0.1s;
+			}
+			.content1 .arc1{
+				animation-delay: -0.3s;
+			}
+			.content .arc2{
+				animation-delay: -0.5s;
+			}
+			.content1 .arc2{
+				animation-delay: -0.7s;
+			}
+			.content .arc3{
+				animation-delay: -0.8s;
+			}
+			.content1 .arc3{
+				animation-delay: -1s;
+			}
+			.content .arc4{
+				animation-delay: -1.2s;
+			}
+			.content1 .arc4{
+				animation-delay: -1.4s;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="loading">
+			<div class="content">
+				<div class="arc1"></div>
+				<div class="arc2"></div>
+				<div class="arc3"></div>
+				<div class="arc4"></div>
+			</div>
+			<div class="content1">
+				<div class="arc1"></div>
+				<div class="arc2"></div>
+				<div class="arc3"></div>
+				<div class="arc4"></div>
+			</div>
+		</div>
+	</body>
+</html>

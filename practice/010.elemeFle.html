@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饿了么弹性盒布局</title>
+    <style>
+         html, body { height: 100%; }
+         body,p{margin: 0;padding: 0;}
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .head{
+            width: 100%;
+            height: 45px;
+            background: linear-gradient(90deg,#0af,#0085ff);
+        }
+        /* content宽度需要自适应 */
+        .content{  
+            width: 100%;
+            background: #f7f7f7;
+            flex: 1 1; 
+        }
+        .footentry{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .footentry .foot-item{ 
+            /* 控制一行五个啊！！！！！ */
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 自动填充 */
+            flex-grow: 1;
+        }
+        .footentry .foot-item .foot-name{
+            font-size: 12px;
+            color: #333333;
+        }
+        .foot{
+            width: 100%;
+            height: 55px;
+            border-top: 1px solid #bbbbbb;
+            display: flex;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .foot .items{
+            width: 25%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .foot .icon{
+            width: 30px;
+            height: 30px;
+            background: #f6f6f6;
+        }
+        .foot .items .title{
+            font-size: 12px;
+            color: #333333;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <header class="head"></header>
+        <div class="content">
+            <div class="footentry">
+            </div>
+        </div>
+        <footer class="foot">
+            <div class="items">
+                <div class="icon"></div>
+                <div class="title">首页</div>
+            </div>
+            <div class="items">
+                <div class="icon"></div>
+                <div class="title">首页</div>
+            </div>
+            <div class="items">
+                <div class="icon"></div>
+                <div class="title">首页</div>
+            </div>
+            <div class="items">
+                <div class="icon"></div>
+                <div class="title">首页</div>
+            </div>
+            <div class="items">
+                <div class="icon"></div>
+                <div class="title">首页</div>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    onload = function(){
+        var footEntry = document.querySelector(".footentry");
+        var str = "";
+        for(var i=0;i<10;i++){
+            str += `<div class="foot-item">
+                    <div class="foot-img">
+                        <img width="50" height="50" src="https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/" alt="">
+                    </div>
+                    <div class="foot-name">美食</div>
+                </div>`
+        }
+        footEntry.innerHTML = str;
+    }
+</script>
+</html>

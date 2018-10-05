@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+
+        
+        toBase64("img/keys.png", (date)=>{
+            var o_img = document.createElement('img');
+            o_img.src = date;
+            document.body.appendChild(o_img);
+        })
+        function toBase64(url,callback){
+            var img = new Image();
+            img.src = url;
+            img.onload = function(){
+                //创建一个canvas元素 不需要append 只是做base64转换
+                var _canvas = document.createElement('canvas');
+                _canvas.width = this.width;
+                _canvas.height = this.height;
+                var ctx = _canvas.getContext('2d');
+                ctx.drawImage(img,0,0,_canvas.width,_canvas.height);
+                // 可以将画布中绘制的图形转换成base64格式
+                let date = _canvas.toDataURL();
+                //不能直接返回 
+                callback?callback(date):"";
+            }
+        }
+    </script>
+</html>

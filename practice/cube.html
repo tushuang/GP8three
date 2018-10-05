@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 定义一个动画效果 */
+        @keyframes rotate{
+            form{transform: rotateX(0) rotateY(0)}
+            /* 16.5%{ transform: rotateX(60deg) rotateY(60deg)}
+            33%{ transform: rotateX(120deg) rotateY(120deg)}
+            49.5%{ transform: rotateX(180deg) rotateY(180deg)}
+            66%{ transform: rotateX(240deg) rotateY(240deg)}
+            83%{ transform: rotateX(360deg) rotateY(360deg)} */
+            to{transform: rotateX(360deg) rotateY(360deg)}
+        }
+
+        /* 舞台 */
+        .stage{  
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+            perspective: 2000px;
+            position: relative;
+            border: 1px solid #cccccc;
+           
+        }
+        .cube-wrapper{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+            /* 偏转一个角度 方便查看效果 */
+            /* transform: rotateX(-30deg) rotateY(45deg); */
+            /* transform: rotateX(0deg) rotateY(0deg); */
+            /* transform: rotate3d(-30,45,0,1deg); */
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+        .clicked{
+           animation: rotate 2s; 
+        }
+        .cube-face{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            line-height: 400px;
+            font-size: 100px;
+            color: white;
+            background: rgba(0,0,0,0.3);
+            /* 需要做3D转换的元素 */
+            /* transform-style: preserve-3d;  */
+            border: 1px solid #bbbbbb;
+            border-radius: 30px;
+        }
+        .cube-face:nth-of-type(1){
+            transform: translateZ(200px);
+        }
+        .cube-face:nth-of-type(2){
+            transform:rotateY(180deg) translateZ(200px);
+        }
+        .cube-face:nth-of-type(3){
+            transform:rotateY(-90deg) translateZ(200px);
+        }
+        .cube-face:nth-of-type(4){
+            transform:rotateY(90deg) translateZ(200px);
+        }
+        .cube-face:nth-of-type(5){
+            transform:rotateX(90deg) translateZ(200px);
+        }
+        .cube-face:nth-of-type(6){
+            transform:rotateX(-90deg) translateZ(200px);
+        }
+        button{
+            display: block;
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <div class="cube-wrapper">
+            <div class="cube-face">1</div>
+            <div class="cube-face">6</div>
+            <div class="cube-face">3</div>
+            <div class="cube-face">4</div>
+            <div class="cube-face">2</div>
+            <div class="cube-face">5</div>
+        </div>
+    </div>
+    <button>go</button>
+</body>
+<script>
+    obutton = document.querySelector("button");
+    ocube_wrapper = document.querySelector(".cube-wrapper");
+    obutton.onclick = function(){
+        ocube_wrapper.classList.add('clicked');
+    }
+    ocube_wrapper.addEventListener("webkitAnimationEnd",function(){  //动画完成后 执行的函数
+        ocube_wrapper.classList.remove('clicked');
+        rotate();
+    })
+    function rotate(){
+        var angle={
+            1:{x:0,y:0},
+            2:{x:-90,y:0},
+            3:{x:0,y:90},
+            4:{x:0,y:-90},
+            5:{x:90,y:0},
+            6:{x:0,y:180}
+        }
+        // 解构赋值
+        var num = parseInt(Math.random()*6)+1;//0~5 +1
+        var {x,y} = angle[num];
+        // setTimeout(()=>{
+            ocube_wrapper.style.transform = 'rotateX('+ x +'deg) rotateY('+y +'deg)';
+        // })
+    }
+</script>
+</html>

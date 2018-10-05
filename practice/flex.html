@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .father{
+            display: flex;
+            width: 800px;
+            height: 500px;
+            background: pink;
+            border: 1px #cccccc solid;
+            /* flex-wrap: wrap; */
+            justify-content:center;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background: white;
+            box-shadow: 1px 1px 10px black;
+        }
+        .son:nth-child(1){  
+            flex-shrink: 2;
+        }
+        .son:nth-child(3){
+            align-self:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">01</div>
+        <div class="son">02</div>
+        <div class="son">03</div>
+        <div class="son">04</div>
+        <div class="son">05</div>
+        <div class="son">06</div>
+        <div class="son">07</div>
+        <div class="son">08</div>
+        <div class="son">09</div>
+    </div>
+</body>
+</html>

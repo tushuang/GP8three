@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    canvas{
+            background: #f5f5f5;
+        }
+</style>
+<body>
+    <canvas class="turntable"></canvas>
+</body>
+<script>
+    class Turntable{
+        constructor(){
+            if(Turntable.instance){
+                return Turntable.instance;
+            }else{
+                return this.getInstance(...arguments);
+            }
+        }
+        getInstance(){
+            let instance = new circle(...arguments);
+            Turntable.instance = instance;
+            return Turntable.instance;
+        }
+    }
+ 
+    class circle{
+        constructor(selector){
+            this.el = selector;
+            this.ctx = this.el.getContext('2d');
+           
+            this.init();
+        }
+        init(){
+            this.el.width = 500;
+            this.el.height = 500;
+            this.onloadImg();
+        }
+        drawPointer(){
+            this.draw(()=>{
+                this.ctx.fillStyle = "#333";
+                this.ctx.moveTo(this.w/2,this.w/6);
+                this.ctx.lineTo(this.w/2.1,this.w/2-69);
+                this.ctx.lineTo(this.w/2 + ( 250- this.w/2.1),this.w/2-69);
+                this.ctx.fill();
+            })
+            this.draw(()=>{
+                this.ctx.fillStyle = "#333";
+                this.ctx.arc(this.w/2,this.w/2,70,0,2*Math.PI);
+                this.ctx.fill();
+            })
+            this.draw(()=>{
+                this.ctx.translate(this.w/2,this.w/2);
+                this.ctx.fillStyle = "deepskyblue";
+                this.ctx.arc(0,0,50,0,2*Math.PI);
+                this.ctx.fill();
+                
+            })
+            this.draw(()=>{
+                this.fillStyle = "#333";
+                this.ctx.font = "normal 16px 微软雅黑";
+                this.ctx.fillText("开始抽奖",this.w/2-30,this.w/2+5);
+            })
+        }
+        drawImg(){
+            this.ctx.save();
+            this.w = this.el.width;
+            this.ctx.translate(this.w/2,this.w/2);
+            this.ctx.rotate(Math.PI/2);
+            this.ctx.drawImage(this.img,-this.w/2,-this.w/2,this.w,this.w);
+            this.ctx.restore();
+        }
+        onloadImg(){
+            this.img = new Image();
+            this.img.src = 'img/circle.png';
+            this.img.onload = function(){
+                this.drawImg();
+                this.drawPointer();
+            }.bind(this);
+        }
+        draw(callback){
+            this.ctx.save();
+            this.ctx.beginPath();
+            callback();
+            this.ctx.closePath();
+			this.ctx.restore();
+        }
+
+    }
+    var data = [
+        {prize:'幸运',s:0,e:3}
+    ]
+    var canvas = document.querySelector("canvas");
+    new Turntable(canvas);
+</script>
+</html>

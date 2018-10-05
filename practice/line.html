@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes rotate{
+            form{transform: rotate(0deg)}
+            to{
+                transform: rotate(-540deg);
+            }
+        }
+        .wrapper1,.wrapper2{
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            position: relative;
+        }
+        .line{
+            position: absolute;
+            transition: all 1s;
+        }
+        .line:nth-child(1){
+            width: 0px;
+            height: 200px;
+            border-top: 2px solid #cccccc;
+            border-bottom: 2px solid #cccccc;
+            top: 20px;
+            left: 0px;
+        }
+        .line:nth-child(2){
+            width: 200px;
+            height: 0px;
+            border-left: 2px solid #cccccc;
+            border-right: 2px solid #cccccc;
+            top: 0px;
+            left: 20px;
+        }
+        .wrapper1:hover .line:nth-child(1){
+            width: 240px;
+        }
+        .wrapper1:hover .line:nth-child(2){
+            height: 240px;
+        }
+        .rotate{
+            width: 100px;
+            height: 200px;
+            border: 5px solid black;
+            transition: all 2s;
+            transform: rotate(0deg) translate(0px, -300px);
+            /* 先改变位移 */
+            transform-origin: left top;
+        }
+        .wrapper2:hover .rotate{
+            transform: rotate(360deg) translate(0px, 0px);
+            /* transform: rotate(-180deg); */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper1">
+        <div class="line">
+            <!-- 上下 -->
+        </div>
+        <div class="line">
+            <!-- 左右 -->
+        </div>
+    </div>
+    <div class="wrapper2">
+        <div class="rotate">
+
+        </div>
+    </div>
+    
+</body>
+</html>

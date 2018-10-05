@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <form action="" oninput="x.value=parseInt(a.value)+parseInt(b.value)">       
+        0<input id="a" type="range" min="0" max="100">
+        100+ <input id="b" type="text" value="50">
+        = <output name="x" for="a b"></output>   
+
+        <input type="url" list="url_list" name="link" /><br>
+        <datalist id="url_list">
+        <option label="W3School" value="http://www.W3School.com.cn" />
+        <option label="Google" value="http://www.google.com" />
+        <option label="Microsoft" value="http://www.microsoft.com" />
+        </datalist>
+
+        <input type="number"  required min="0" max="10" step="3" /><br>
+        <input type="range" min='10' max="100" step="10"><br>
+        <input type="time"><br>
+        <input type="week"><br>
+        <input type="datetime"><br>
+        <!-- <input type=datetime-local"><br> -->
+        <input type="color"><br>
+        <input type="month"><br>
+        <input type="search"> 
+    </form>
+    
+</body>
+</html>

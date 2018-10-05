@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div.test ul li[color ~= "green"]{
+            color: green;
+        }
+        div.test ul li[color |= "bg"]{
+            background: black;
+            color: white;
+        }
+        /* div.test ul p:nth-of-type(2) {
+            background: green;
+        } */
+        div.test ul li::selection{
+            background: darkred;
+            color: white;
+        }
+        /* 前面有li的p标签 */
+        div.test ul li~p{   
+            background: blue;
+        }
+        form input:enabled{
+            background: pink;
+        }
+        form input:focus{
+            color: blueviolet;
+        }
+        form input:checked:not(:nth-child(3)){  
+            width: 20px;
+            height: 20px;
+        }
+        div ul h1:only-of-type {
+            color: pink;
+        }
+        div ul li:nth-last-child(1){
+            background: darkred;
+        }
+        span{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px black solid;
+            /* 把单词打断 */
+            /* word-wrap: break-word; */
+            word-break: keep-all;
+        }
+        .img{
+            width: 1000px;
+            height: 1000px;
+            background: url("http://img0.imgtn.bdimg.com/it/u=3973302904,2257823904&fm=26&gp=0.jpg");
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="test">
+        <ul>
+            <h1>hello world</h1>
+            <p>你好</p>
+            <li color = "green yellow">001</li>
+            <p>祝你幸福</p>
+            <li color = "pink">002</li>
+            <p>再见</p>
+            <p>再见</p>
+            <li color = "bg-black">003</li>
+            <li>004</li>
+        </ul>
+    </div>
+    <form action="">
+        <input type="text">
+        <input disabled type="text">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+    </form>
+    <span>
+        this a longlonglonglonglonglonglonglongword 
+    </span>
+    <div class="img">
+
+    </div>
+</body>
+</html>

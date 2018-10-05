@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>立方体</title>
+		<style>
+			.rect-wrap{position:relative;perspective: 1600px;}
+			.container{width: 800px;height: 800px;transform-style: preserve-3d;animation: rotate-frame 30s linear infinite;
+			transform-origin: 50% 50% 200px;/*设置3d空间的原点在平面中心再向z轴移动200px的位置*/}
+			.slide{width: 400px;height: 400px;position: absolute;}
+			.top{left:200px;top:-200px;transform: rotateX(-90deg);transform-origin: bottom;background:url(images/1.jpeg) no-repeat;background-size: 100% 100%;}
+			.bottom{left:200px;bottom:-200px;transform: rotateX(90deg);transform-origin: top;background:url(images/2.jpeg) no-repeat;background-size: 100% 100%;}
+			.left{left:-200px;top:200px;transform: rotateY(90deg);transform-origin: right;background:url(images/3.jpg) no-repeat;background-size: 100% 100%;}
+			.right{right:-200px;top:200px;transform: rotateY(-90deg);transform-origin: left;background:url(images/4.jpeg) no-repeat;background-size: 100% 100%;}
+			.front{left: 200px;top:200px;transform: translateZ(400px);background:url(images/5.jpg) no-repeat;background-size: 100% 100%;}
+			.back{left:200px;top:200px;transform: translateZ(0);background:url(images/6.jpg) no-repeat;background-size: 100% 100%;}
+			@keyframes rotate-frame{
+				0%{
+					transform: rotateX(0deg) rotateY(0);
+				}
+				10%{
+					transform: rotateX(0deg) rotateY(180deg);
+				}
+				20%{
+					transform: rotateX(-180deg) rotateY(180deg);
+				}
+				30%{
+					transform: rotateX(-360deg) rotateY(180deg);
+				}
+				40%{
+					transform: rotateX(-360deg) rotateY(360deg);
+				}
+				50%{
+					transform: rotateX(-180deg) rotateY(360deg);
+				}
+				60%{
+					transform: rotateX(90deg) rotateY(180deg);
+				}
+				70%{
+					transform: rotateX(0deg) rotateY(180deg);
+				}
+				80%{
+					transform: rotateX(90deg) rotateY(90deg);
+				}
+				90%{
+					transform: rotateX(90deg) rotateY(0deg);
+				}
+				100%{
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rect-wrap"><!--舞台元素，设置perspective,让其子元素获得透视效果-->
+			<div class="container"><!--容器，设置transform-style:perserve-3d,让其子元素在3D空间呈现-->
+				<div class="top slide"></div> <!--立方体的六个面-->
+				<div class="bottom slide"></div>
+				<div class="left slide"></div>
+				<div class="right slide"></div>
+				<div class="front slide"></div>
+				<div class="back slide"></div>
+			</div>
+		</div>
+	</body>
+</html>

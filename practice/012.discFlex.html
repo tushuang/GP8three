@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>骰子布局</title>
+    <style>
+        .dice{
+            display:flex;
+            justify-content: space-around;
+        }
+        .wrapper{
+            width: 200px;
+            height: 200px;
+            padding: 30px;
+            box-sizing: border-box;
+            background: -webkit-radial-gradient(center, circle, #cecaca, #8b8888);
+            border-radius: 30px;
+            display: flex;
+        }
+        .dot{
+            width: 50px;
+            height: 50px;
+            background: -webkit-radial-gradient(center, circle, rgb(168, 26, 26), rgb(94, 9, 9));
+            border-radius: 50%;
+        }
+        .wrapper:nth-child(1){
+            justify-content: center;
+            align-items: center;
+        }
+        .wrapper:nth-child(2){
+            justify-content: space-around;
+        }
+        .wrapper:nth-child(2) .dot:last-child{
+            align-self:flex-end;
+        }
+        .wrapper:nth-child(3){
+            justify-content: space-around;
+            align-items: center;
+        }
+        .wrapper:nth-child(3) .dot:first-child{
+            align-self:flex-start;
+        }
+        .wrapper:nth-child(3) .dot:last-child{
+            align-self:flex-end;
+        }
+        .wrapper:nth-child(4){
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-content: space-around;
+        }
+        .wrapper:nth-child(5){
+            flex-wrap: wrap;
+        }
+        .wrapper:nth-child(5) .dot-wrap{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .wrapper:nth-child(6){
+            flex-wrap: wrap;
+        }
+        .wrapper:nth-child(6) .dot-wrap{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="dice">
+        <div class="wrapper">
+            <div class="dot"></div>
+        </div>
+        <div class="wrapper">
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="wrapper">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="wrapper">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="wrapper">
+            <div class="dot-wrap">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="dot-wrap">
+                <div class="dot"></div>
+            </div>
+            <div class="dot-wrap">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="dot-wrap">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="dot-wrap">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="dot-wrap">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

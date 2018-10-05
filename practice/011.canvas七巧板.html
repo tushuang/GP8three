@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>七巧板</title>
+</head>
+<body>
+    <canvas class="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.querySelector('.canvas');
+    canvas.width = 300;
+    canvas.height = 300;
+    // 画笔
+    var ctx = canvas.getContext('2d');
+    
+    var coord = [
+        {1:[0,0],2:[300,0],3:[150,150]},
+        {1:[0,0],2:[150,150],3:[0,300]},
+        {1:[300,0],2:[300,150],3:[225,225],4:[225,75]},
+        {1:[225,75],2:[150,150],3:[225,225]},
+        {1:[0,300],2:[150,300],3:[75,225]},
+        {1:[300,150],2:[300,300],3:[150,300]},
+        {1:[150,150],2:[225,225],3:[150,300],4:[75,225]}
+    ];
+
+    for(var i=0;i<coord.length;i++){
+        draw(()=>{
+            ctx.strokeStyle = randColor();
+            ctx.fillStyle = randColor();
+            for(var attr in coord[i]){
+                var arr = coord[i][attr];
+                console.log(arr);
+                ctx.lineTo(arr[0],arr[1]);
+            }
+            ctx.stroke();
+            ctx.fill();
+        })
+    }
+    
+
+    function draw(callback){
+        ctx.beginPath();
+        ctx.save();
+        callback?callback():"";
+        ctx.restore();
+        ctx.closePath();
+    }
+
+    function randInt(min,max){  //随机数
+        return parseInt((Math.random()*(max-min))+min);
+    }
+
+    function randColor(){
+        var r= randInt(0,255);
+        var g= randInt(0,255);
+        var b= randInt(0,255);
+        return "rgb("+r+","+g+","+b+")";
+    }
+</script>
+</html>

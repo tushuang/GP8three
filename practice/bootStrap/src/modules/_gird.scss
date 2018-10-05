@@ -1,0 +1,63 @@
+//給類加上樣式
+//定義容器
+@import 'mixin/clearfix';
+.wrap{  //固定寬度 100%是小屏幕下的寬度
+    width: 100%;
+    margin:0 auto;
+}
+.wrap-f {// 百分百寬度
+    width: 100%;
+}
+
+//計算不同比例的width
+@mixin gird($type) {
+    @for $i from 0 through $column-number{
+        .col-#{$type}-#{$i}{
+            box-sizing: border-box;  
+            float: left;
+            width: ($i/$column-number)*100%;
+        }
+        .col-#{$type}-offset-#{$i}{
+            margin-left: ($i/$column-number)*100%;
+        }
+    }
+}
+@function display($size,$back,$case, $case2){
+    @if($size == $back){
+        @return $case;
+    } @else{
+        @return $case2;
+    }
+}
+
+//控制顯示和隱藏
+@mixin visibility($size) {
+    .show-xs{display:display($size,xs,block, none)}
+    .show-md{display:display($size,md,block, none)}
+    .show-lg{display:display($size,lg,block, none)}
+            
+    .hide-xs{display:display($size,xs,none, block)}
+    .hide-md{display:display($size,md,none, block)}
+    .hide-lg{display:display($size,lg,none, block)}
+}
+
+@include gird(xs);
+@include visibility(xs);
+@media screen and (min-width:$key-one){
+    .wrap{
+        width: 768px;
+    }
+    @include gird(md);
+    @include visibility(md);
+}
+@media screen and (min-width:$key-two){
+    .wrap{
+        width: 1000px;
+    }
+    @include gird(lg);
+    @include visibility(lg);
+}
+.clearfix{
+    @include clearfix();
+}
+   

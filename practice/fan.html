@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            width: 500px;
+            height: 200px;
+            margin: auto;
+            position: relative;
+        }
+        .fan{
+            width: 40px;
+            height: 100px;
+            position:absolute;
+            left: 0px;
+            right: 0px;
+            margin:10px auto;
+            transform-origin: center bottom;
+            transition: all 0.5s;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    </div>
+</body>
+<script>
+    var fanNum = 11;
+    init();
+    function init(){
+        createFan();
+    }
+    function createFan(){
+        var owrapper = document.querySelector(".wrapper");
+        var midNum = (fanNum+1)/2;
+        var deg = parseInt(80/(midNum-1)); //弧度
+        var ohead = document.querySelector('head');
+        var ostyle = document.createElement('style');
+        var str = "";
+        ohead.appendChild(ostyle);
+        for(var i=0;i<fanNum;i++){
+            var ofan = document.createElement("div");
+            owrapper.appendChild(ofan);
+            ofan.className = "fan";
+            ofan.style.background = randColor();
+             //-5 -4 -3 -2 -1 0 1 2 3 4 5
+            var rotateDeg = (i-(midNum-1))*deg;
+            str += '.fan:nth-child('+ midNum +'){ opacity:1}';
+            str +=' .wrapper:hover .fan:nth-child('+ (parseInt(i)+1) +'){opacity:1; transform : rotate('+ rotateDeg +'deg)}';
+            // ofan.style.transform = "rotate("+ rotateDeg +"deg)";
+        }
+        ostyle.innerHTML = str;
+    }
+    
+    function randInt(min,max){  //随机数
+        return parseInt((Math.random()*(max-min))+min);
+    }
+
+    function randColor(){
+        var r= randInt(0,255);
+        var g= randInt(0,255);
+        var b= randInt(0,255);
+        return "rgb("+r+","+g+","+b+")";
+    }
+</script>
+</html>

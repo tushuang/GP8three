@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes surround{
+            form{transform: translate(0, 0);  }
+            25%{transform: translate(700px,0px)  }
+            50%{transform: translate(700px,700px)  } 
+             75%{transform: translate(0px,700px)  }  
+             to{transform: translate(0px,0px)  } 
+        }
+        .wrapper{
+            width: 800px;
+            height: 800px;
+            border: 1px solid #bbbbbb;
+        }
+        .active__box{
+            width: 100px;
+            height: 100px;
+            background: darkred;
+            animation:surround 5s;
+            animation-fill-mode: forwards; /* 动画执行完后 停在执行完的地方 动画完成度需是100% */
+        }
+        .wrapper:hover .active__box{
+            animation-play-state:paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="active__box">
+
+        </div>
+    </div>
+</body>
+</html>
